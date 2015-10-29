@@ -73,13 +73,11 @@ ERRORS = """
 117=blacklist
 117=bad reputation
 117=low reputation
-
 118=Ratelimit exceeded
 118=Overquoted
 119=554 ironport.uc.local
 119=553 sorry, that domain
 119=550-Verification failed
 119=cannot deliver mail
-
 666=Other errors
 """
