@@ -10,7 +10,8 @@ def db_close(conn, curr):
     curr.close()
     conn.close()
 
-def insert_db(conn, curr, queueId, sendId, errorKey):
+def insert_db(conn, cur, queueId, sendId, errorKey):
+    print queueId,sendId,errorKey
     try:
         cur.execute('SELECT * FROM exim WHERE queue_id=%s', (queueId,))
         result = cur.fetchone()
