@@ -20,13 +20,15 @@ def parse_file_infite():
         timeBefore = time.time()
         newName = filename + 'stat' + str(int(time.time()))
         if path.isfile(filename):
+            conn,curr = db.db_connect()
             rename(filename, newName)
             mainlog = open(newName, 'a+')
-            process_file(mainlog)
+            process_file(mainlog, conn, curr)
+            db.db_close(conn, curr)
         if time.time() - timeBefore < 60:
             time.sleep(60)
 
-def process_file(mainlog):
+def process_file(mainlog, conn, curr):
     letter = []
     for line in mainlog:
         if line.startswith('From MAILER-DAEMON'):
@@ -38,7 +40,7 @@ def process_file(mainlog):
             if idGroup:
                 queueId, sendId = idGroup.groups()
                 # inserting to db
-                db.insert_db(queueId, sendId, errorKey)
+                db.insert_db(conn, curr, queueId, sendId, errorKey)
             letter = []
         letter.append(line)
 
