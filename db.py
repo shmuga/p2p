@@ -10,12 +10,8 @@ def db_close(conn, curr):
     curr.close()
     conn.close()
 
-<<<<<<< HEAD
-def insert_db(conn, cur, queueId, sendId, errorKey): 	
-=======
+
 def insert_db(conn, cur, queueId, sendId, errorKey):
-    print queueId,sendId,errorKey
->>>>>>> 97763107d3c6a908308964e5afbe02b2ccba2668
     try:
         cur.execute('SELECT * FROM exim WHERE queue_id=%s', (queueId,))
         result = cur.fetchone()
@@ -26,8 +22,4 @@ def insert_db(conn, cur, queueId, sendId, errorKey):
             cur.execute('UPDATE exim SET error_code=%s,state=501 WHERE queue_id=%s', (errorKey,queueId))
             conn.commit()
     except Exception, e:
-<<<<<<< HEAD
         print e
-=======
-        print e
->>>>>>> 97763107d3c6a908308964e5afbe02b2ccba2668

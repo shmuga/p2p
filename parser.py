@@ -22,11 +22,11 @@ def parse_file_infite():
         if path.isfile(filename):
             conn,curr = db.db_connect()
             rename(filename, newName)
-            mainlog = open(newName,'a+') 
-	    mainlog.write('\nFrom MAILER-DAEMON');
-	    mainlog.close()
-	    mainlog = open(newName, 'a+')		
-            process_file(mainlog, conn, curr)           
+            mainlog = open(newName,'a+')
+    	    mainlog.write('\nFrom MAILER-DAEMON');
+    	    mainlog.close()
+    	    mainlog = open(newName, 'a+')
+            process_file(mainlog, conn, curr)
             db.db_close(conn, curr)
         if time.time() - timeBefore < 60:
             time.sleep(60)
