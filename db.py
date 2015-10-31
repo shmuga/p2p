@@ -16,10 +16,10 @@ def insert_db(conn, cur, queueId, sendId, errorKey):
         cur.execute('SELECT * FROM exim WHERE queue_id=%s', (queueId,))
         result = cur.fetchone()
         if result == None:
-            cur.execute('INSERT INTO exim(queue_id,send_id,error_code,state) VALUES(%s,%s,%s,%s)', (queueId,sendId,errorKey,501,))
+            cur.execute('INSERT INTO exim(queue_id,send_id,error_code,state) VALUES(%s,%s,%s,%s)', (queueId,sendId,errorKey,200,))
             conn.commit()
         else:
-            cur.execute('UPDATE exim SET error_code=%s,state=501 WHERE queue_id=%s', (errorKey,queueId))
+            cur.execute('UPDATE exim SET error_code=%s,state=200 WHERE queue_id=%s', (errorKey,queueId))
             conn.commit()
     except Exception, e:
         print e
