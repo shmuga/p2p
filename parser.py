@@ -34,7 +34,7 @@ def parse_file_infite():
 def process_file(mainlog, conn, curr):
     letter = []
     for line in mainlog:
-        if line.startswith('From MAILER-DAEMON') or line == '':
+        if line.startswith('From MAILER-DAEMON') or line.startswith('From fblbounces@senderscore.net'):
             # after tihs we get letter error
             errorKey = process_letter(''.join(letter))
             if not errorKey:
