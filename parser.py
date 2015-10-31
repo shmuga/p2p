@@ -8,6 +8,7 @@ from os import rename,remove,path
 import collections
 errors = collections.OrderedDict()
 ERRORS = ERRORS.split('\n')
+
 for k in ERRORS:
     if k:
         err = k.split('=')
@@ -21,12 +22,11 @@ def parse_file_infite():
         if path.isfile(filename):
             conn,curr = db.db_connect()
             rename(filename, newName)
-            mainlog = open(newName, 'a+')
+            mainlog = open(newName,'a+') 
 	    mainlog.write('\nFrom MAILER-DAEMON');
 	    mainlog.close()
 	    mainlog = open(newName, 'a+')		
-            process_file(mainlog, conn, curr)
-            
+            process_file(mainlog, conn, curr)           
             db.db_close(conn, curr)
         if time.time() - timeBefore < 60:
             time.sleep(60)
